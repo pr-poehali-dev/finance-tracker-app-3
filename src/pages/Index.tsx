@@ -170,7 +170,7 @@ export default function Index() {
           <TabsContent value="dashboard" className="space-y-6 animate-fade-in">
             <Card className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground border-0">
               <CardHeader>
-                <CardTitle className="text-lg font-medium opacity-90">Общий баланс</CardTitle>
+                <CardTitle className="text-lg font-medium opacity-90">Козлов Максим Алексеевич</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-4xl font-bold mb-4">{formatCurrency(totalBalanceRub)}</div>
