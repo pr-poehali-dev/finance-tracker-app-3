@@ -64,6 +64,15 @@ export default function Index() {
     EUR: 103.20,
   };
 
+  const currencyRates = [
+    { code: 'USD', name: 'Доллар США', rate: 95.50, change: +0.82, flag: '🇺🇸' },
+    { code: 'EUR', name: 'Евро', rate: 103.20, change: -0.45, flag: '🇪🇺' },
+    { code: 'CNY', name: 'Юань', rate: 13.15, change: +0.12, flag: '🇨🇳' },
+    { code: 'GBP', name: 'Фунт стерлингов', rate: 119.80, change: +1.05, flag: '🇬🇧' },
+    { code: 'JPY', name: 'Йена', rate: 0.64, change: -0.02, flag: '🇯🇵' },
+    { code: 'TRY', name: 'Турецкая лира', rate: 2.75, change: +0.08, flag: '🇹🇷' },
+  ];
+
   const totalBalanceRub = accounts.reduce((sum, acc) => {
     if (acc.currency === 'USD') {
       return sum + acc.balance * exchangeRates.USD;
@@ -193,6 +202,40 @@ export default function Index() {
                 </Card>
               ))}
             </div>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Icon name="DollarSign" size={20} />
+                  Курсы валют
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {currencyRates.map((currency) => (
+                    <div
+                      key={currency.code}
+                      className="p-3 rounded-lg border hover:shadow-md transition-all cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-2xl">{currency.flag}</span>
+                        <div>
+                          <p className="font-semibold text-sm">{currency.code}</p>
+                          <p className="text-xs text-muted-foreground">{currency.name}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-end justify-between">
+                        <div className="text-lg font-bold">{currency.rate.toFixed(2)} ₽</div>
+                        <div className={`text-xs font-medium flex items-center gap-1 ${currency.change > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                          <Icon name={currency.change > 0 ? 'ArrowUp' : 'ArrowDown'} size={12} />
+                          {Math.abs(currency.change).toFixed(2)}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
             <div className="grid md:grid-cols-2 gap-6">
               <Card>
